@@ -1,7 +1,8 @@
 # collect-cuda
 
-The project contains `collectd` `exec` plugin for collecting nVidia GPU
-metrics. The plugin works well with single and multi-GPU machines.
+The project contains [collectd](https://collectd.org/) `exec`
+plugin for collecting nVidia GPU metrics. The plugin works well
+with single and multi-GPU machines.
 
 ## Motivation
 
