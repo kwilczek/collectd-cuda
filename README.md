@@ -1,4 +1,4 @@
-# collect-cuda
+# collectd-cuda
 
 The project contains [collectd](https://collectd.org/) 
 [exec](https://collectd.org/documentation/manpages/collectd-exec.5.shtml)
