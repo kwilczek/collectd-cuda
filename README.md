@@ -12,7 +12,7 @@ a scientific research at the University of Warsaw. Apart from
 monitoring the research servers, I also wanted to collect metrics
 from nVidia cards. I discovered that currently there is no
 modern working solution for `collectd` and `InfluxDB`, so I decided to write
-this plugin with `InfluxDB` as the storage solution.
+this plugin with `InfluxDB` as the storage for collected metrics.
 
 ## Installation
 
@@ -77,7 +77,8 @@ Each entry must be in the specific format:
 ```
 Where `metric_name` can be any query string from `nvidia-smi` with
 underscores `_` instead of dots `.`.
-. The full list of query options can be obtained by running:
+
+The full list of query options can be obtained by running:
 ```shell
 nvidia-smi --help-query-gpu
 ```
