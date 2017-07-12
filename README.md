@@ -17,5 +17,12 @@ this plugin.
 
 First, make sure that the `collectd` `exec` plugin is loaded. Uncomment
 or add this line in your `collectd.conf`:
-	LoadPlugin exec
-lkjdf ladkjf
+```
+LoadPlugin exec
+```
+Then add the path to `collectd_cuda.sh` in `exec` configuration:
+```
+<Plugin exec>                                                                   
+    Exec some_user "/path/to/collectd_cuda.sh"                       
+</Plugin>
+```
