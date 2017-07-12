@@ -11,4 +11,3 @@ monitoring the research servers, I also wanted to collect metrics
 from nVidia cards. I discovered that currently there is no
 modern working solution for collectd, so I decided to write
 this plugin.
-
