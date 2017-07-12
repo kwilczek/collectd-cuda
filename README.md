@@ -17,4 +17,5 @@ this plugin.
 
 First, make sure that the `collectd` `exec` plugin is loaded. Uncomment
 or add this line in your `collectd.conf`:
-
+	LoadPlugin exec
+lkjdf ladkjf
