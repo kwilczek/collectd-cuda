@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# 
+# Author: Kamil Wilczek
+# E-mail: kamil.van.wilczek@gmail.com
+#
+# This script is a collectd plugin that gathers metrics
+# from nVidia cards.
+
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname --fqdn)}"                              
 INTERVAL="${COLLECTD_INTERVAL:-10}"         
 
