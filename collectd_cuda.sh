@@ -14,7 +14,7 @@ INTERVAL="${COLLECTD_INTERVAL:-10}"
 declare -A config=(
 	["temperature_gpu"]=temperature
 	["fan_speed"]=percent
-	#["pstate"]=absolute
+	["pstate"]=absolute
 	["memory_used"]=memory
 	["memory_free"]=memory
 	["utilization_gpu"]=percent
@@ -48,7 +48,11 @@ while IFS=',' read -r gpu_id "${!config[@]}"
 do
 	for parameter in "${!config[@]}"
 	do
-		echo "PUTVAL ${HOSTNAME}/cuda-${gpu_id}/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter}"
+		# GPU power state, 'pstate', is returned in as a number with
+		# 'P' prefix. The easiest way to remove the 'P' without 
+		# additional loops and conditions is to simply expand the
+		# 'parameter' variable with '//P'.
+		echo "PUTVAL ${HOSTNAME}/cuda-${gpu_id}/${config[$parameter]}-${parameter} interval=$INTERVAL N:${!parameter//P}"
 	done
 done <<< "${gpus_state// }"
 
