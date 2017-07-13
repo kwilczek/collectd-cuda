@@ -89,4 +89,4 @@ I store my metrics in the [InfluxDB](https://www.influxdata.com/) and
 visualize them with [Grafana](https://grafana.com/). Below is the
 sample dashboard from one of my servers.
 
-![cudagrafana](images/cuda_grafana_example.png)
+![cudagrafana](images/cuda_collectd_grafana.png)
