@@ -11,8 +11,8 @@ Recently, I have started to work as a system administrator in
 a scientific research at the University of Warsaw. Apart from
 monitoring the research servers, I also wanted to collect metrics
 from nVidia cards. I discovered that currently there is no
-modern working solution for `collectd` and `InfluxDB`, so I decided to write
-this plugin with `InfluxDB` as the storage for collected metrics.
+modern working solution for `collectd`, so I decided to write
+this plugin.
 
 ## Installation
 
@@ -31,7 +31,7 @@ Then add the path to `collectd_cuda.sh` in `exec` configuration:
 ## Sample output
 
 Depending on metrics selection the plugin will return `PUTVAL` Plain Text
-Protocol messages. Below is the sample output from server with four *TitanX*
+Protocol messages. Below is the sample output from server with four **TitanX**
 cards.
 ```
 PUTVAL server.fqdn/cuda-0000:02:00.0/percent-fan_speed interval=10 N:23
@@ -63,7 +63,6 @@ Metrics can be added or removed from the `config` array.
 declare -A config=(                                                             
     ["temperature_gpu"]=temperature                                             
     ["fan_speed"]=percent                                                       
-    #["pstate"]=absolute                                                        
     ["memory_used"]=memory                                                      
     ["memory_free"]=memory                                                      
     ["utilization_gpu"]=percent                                                 
@@ -71,14 +70,23 @@ declare -A config=(
     ["power_draw"]=power                                                        
 )
 ```
-Each entry must be in the specific format:
-```
+Each entry must be in the following format:
+```shell
 ["metric_name"]=value_type
 ```
-Where `metric_name` can be any query string from `nvidia-smi` with
-underscores `_` instead of dots `.`.
+`metric_name` can be any query string from `nvidia-smi` with dots `.`
+replaced by underscores `_`. So, for example `temperature.gpu` becomes
+`temperature_gpu`.
 
 The full list of query options can be obtained by running:
 ```shell
 nvidia-smi --help-query-gpu
 ```
+
+## Graphs with Grafana
+
+I store my metrics in the [InfluxDB](https://www.influxdata.com/) and
+visualize them with [Grafana](https://grafana.com/). Below is the
+sample dashboard from one of my servers.
+
+![cudagrafana](images/cuda_grafana_example.png)
