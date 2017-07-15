@@ -12,7 +12,9 @@ or add this line in your `collectd.conf`:
 ```
 LoadPlugin exec
 ```
-Then add the path to `collectd_cuda.sh` in `exec` configuration:
+Then add the path to `collectd_cuda.sh` in `exec` configuration.
+Configuration file, `plugins_config.sh`, is in separate file and is
+required by the main script.
 ```
 <Plugin exec>                                                                   
     Exec some_user "/path/to/collectd_cuda.sh"                       
