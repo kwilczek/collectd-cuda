@@ -9,23 +9,15 @@
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname --fqdn)}"                              
 INTERVAL="${COLLECTD_INTERVAL:-10}"         
 
-# Please comment out/delete each parameter you do not need.
-# The array contents is in format:
-#
-# ["query_string"]=value_type
-#
-# One can add more parameters using the list returned
-# from 'nvidia-smi --help-query-gpu'.
-declare -A config=(
-	["temperature_gpu"]=temperature
-	["fan_speed"]=percent
-	["pstate"]=absolute
-	["memory_used"]=memory
-	["memory_free"]=memory
-	["utilization_gpu"]=percent
-	["utilization_memory"]=percent
-	["power_draw"]=power
-)
+# Reading the config file.
+config_file="plugins_config.sh"
+if [[ ! -f "$config_file" ]]
+then
+	echo "Missing config file!"
+	exit 1
+else
+	source "$config_file"
+fi
 
 # This parameter will always be present. This is a way to
 # uniquely identify a GPU card (very useful in multiGPU
