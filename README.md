@@ -1,9 +1,7 @@
 # collectd-cuda
 
-The project contains [collectd](https://collectd.org/) 
-[exec](https://collectd.org/documentation/manpages/collectd-exec.5.shtml)
-plugin for collecting nVidia GPU metrics. The plugin works well
-with single and multi-GPU machines.
+The project contains collectd CUDA exec plugin for collecting nVidia
+GPU metrics. The plugin works well with single and multi-GPU machines.
 
 ## Installation
 
@@ -24,8 +22,8 @@ required by the main script.
 ## Sample output
 
 Depending on metrics selection the plugin will return `PUTVAL` Plain Text
-Protocol messages. Below is the sample output from server with four **TitanX**
-cards.
+Protocol [messages](https://collectd.org/documentation/manpages/collectd-exec.5.shtml).
+Below is the sample output from server with four **TitanX** cards.
 ```
 PUTVAL server.fqdn/cuda-0000:02:00.0/percent-fan_speed interval=10 N:23
 PUTVAL server.fqdn/cuda-0000:02:00.0/memory-memory_free interval=10 N:11172
