@@ -1,17 +1,17 @@
 # collectd-cuda
 
-The project contains collectd CUDA exec plugin for collecting nVidia
+The project contains `collectd` CUDA `exec` plugin for collecting nVidia
 GPU metrics. The plugin works well with single and multi-GPU machines.
 
 ## Installation
 
 First, make sure that the `collectd` `exec` plugin is loaded. Uncomment
-or add this line in your `collectd.conf`:
+or add the following line to your `collectd.conf`:
 ```
 LoadPlugin exec
 ```
-Then add the path to `collectd_cuda.sh` in `exec` configuration.
-Configuration file, `plugins_config.sh`, is in separate file and is
+Then, add the path to `collectd_cuda.sh` in `exec` configuration.
+The configuration file, `plugins_config.sh`, is in a separate file and is
 required by the main script.
 ```
 <Plugin exec>                                                                   
@@ -21,9 +21,9 @@ required by the main script.
 
 ## Sample output
 
-Depending on metrics selection the plugin will return `PUTVAL` Plain Text
+Depending on the metrics selection, the plugin will return `PUTVAL` Plain Text
 Protocol [messages](https://collectd.org/documentation/manpages/collectd-exec.5.shtml).
-Below is the sample output from server with four **TitanX** cards.
+You can find below the sample output from the server with four **TitanX** cards.
 ```
 PUTVAL server.fqdn/cuda-0000:02:00.0/percent-fan_speed interval=10 N:23
 PUTVAL server.fqdn/cuda-0000:02:00.0/memory-memory_free interval=10 N:11172
@@ -61,15 +61,15 @@ declare -A config=(
     ["power_draw"]=power                                                        
 )
 ```
-Each entry must be in the following format:
+Each entry should be in the following format:
 ```shell
 ["metric_name"]=value_type
 ```
-`metric_name` can be any query string from `nvidia-smi` with dots `.`
-replaced by underscores `_`. So, for example `temperature.gpu` becomes
-`temperature_gpu`.
+Any query string from `nvidia-smi` can be a `metric_name`, but each dot `.`
+has to be replaced by an underscore `_`. For example, `temperature.gpu`
+becomes `temperature_gpu`.
 
-The full list of query options can be obtained by running:
+The full list of query options can be obtained with the following command:
 ```shell
 nvidia-smi --help-query-gpu
 ```
@@ -77,7 +77,7 @@ nvidia-smi --help-query-gpu
 ## Graphs with Grafana
 
 I store my metrics in the [InfluxDB](https://www.influxdata.com/) and
-visualize them with [Grafana](https://grafana.com/). Below is the
-sample dashboard from one of my servers.
+visualize them with [Grafana](https://grafana.com/). You can find below a sample
+dashboard from one of the servers I administer.
 
 ![cudagrafana](images/cuda_collectd_grafana.png)
