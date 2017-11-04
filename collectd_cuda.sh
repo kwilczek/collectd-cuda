@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # Author: Kamil Wilczek
 # E-mail: kamil.van.wilczek@gmail.com
 #
@@ -40,7 +40,6 @@ gpus_state=$(nvidia-smi --query-gpu="${query_string%,}" --format=csv,noheader,no
 # Here bash variable indirection is used.
 # For example, variable name 'power_draw" is used as a parameter in
 # collectd protocol and it also has value assigned to that name.
-# while IFS=',' read -r gpu_id $(echo "${!config[*]}" )
 while IFS=',' read -r gpu_id "${!config[@]}"
 do
 	for parameter in "${!config[@]}"
