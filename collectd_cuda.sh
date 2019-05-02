@@ -6,17 +6,23 @@
 # This script is a collectd plugin that gathers metrics
 # from nVidia cards.
 
-HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname --fqdn)}"                              
-INTERVAL="${COLLECTD_INTERVAL:-10}"         
+readonly HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname --fqdn)}"
+readonly INTERVAL="${COLLECTD_INTERVAL:-10}"
+readonly SCRIPTDIR="$(dirname "${0}")"
 
 # Reading the config file.
-config_file="plugins_config.sh"
-if [[ ! -f "$config_file" ]]
-then
-	echo "Missing config file!"
+readonly config_file="${SCRIPTDIR}/plugins_config.sh"
+if [[ ! -f "$config_file" ]]; then
 	exit 1
 else
+	# shellcheck source=plugins_config.sh
 	source "$config_file"
+fi
+
+# The script should not continue if nvidia-smi is not
+# present on a system.
+if ! nvidia-smi &> /dev/null; then
+	exit 1
 fi
 
 # This parameter will always be present. It is a way to
